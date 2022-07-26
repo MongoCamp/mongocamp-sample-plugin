@@ -2,7 +2,7 @@ package com.quadstingray.mongocamp.sample.plugin
 import better.files.File
 import com.typesafe.scalalogging.LazyLogging
 import dev.mongocamp.server.plugin.FilePlugin
-
+import java.util.Date
 import scala.util.Random
 
 class TempFileHandler extends FilePlugin with LazyLogging {
@@ -13,7 +13,9 @@ class TempFileHandler extends FilePlugin with LazyLogging {
     val file = File.newTemporaryFile()
     file.appendText(bucket + "\r\n")
     file.appendText(fileId + "\r\n")
-    file.appendText(Random.alphanumeric.take(256).mkString)
+    file.appendText("Creation Date" + new Date() + "\r\n")
+    val random = Random.between(256, 512)
+    file.appendText(Random.alphanumeric.take(random).mkString)
     file
   }
 
