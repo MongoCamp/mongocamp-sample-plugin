@@ -49,9 +49,6 @@ jobs:
         run: pnpm install -g conventional-changelog-cli
       - name: install conventional-github-release
         run: pnpm install -g conventional-github-releaser
-      - id: install-secret-key
-        name: Install gpg secret key
-        run: cat <(echo -e "${{ secrets.PGP_SECRET_KEY }}") | gpg --batch --import
       - name: Set up JDK
         uses: actions/setup-java@v3.3.0
         with:
