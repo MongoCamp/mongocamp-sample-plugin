@@ -34,7 +34,7 @@ jobs:
       - name: Run tests
         run: sbt test
   release:
-    needs: build-docker
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
