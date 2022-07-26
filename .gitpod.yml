@@ -7,7 +7,6 @@ image:
 
 tasks:
   - init: |
-      npm install
       sbt compile
 
 jetbrains:
