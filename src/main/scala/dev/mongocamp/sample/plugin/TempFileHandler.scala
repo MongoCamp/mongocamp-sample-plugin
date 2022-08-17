@@ -1,7 +1,9 @@
-package com.quadstingray.mongocamp.sample.plugin
+package dev.mongocamp.sample.plugin
+
 import better.files.File
 import com.typesafe.scalalogging.LazyLogging
 import dev.mongocamp.server.plugin.FilePlugin
+
 import java.util.Date
 import scala.util.Random
 

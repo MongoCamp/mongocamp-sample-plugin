@@ -1,4 +1,4 @@
-package com.quadstingray.mongocamp.sample.plugin
+package dev.mongocamp.sample.plugin
 
 import com.typesafe.scalalogging.LazyLogging
 import dev.mongocamp.server.exception.ErrorDescription
@@ -6,7 +6,7 @@ import dev.mongocamp.server.model.auth.UserInformation
 import dev.mongocamp.server.plugin.RoutesPlugin
 import sttp.capabilities
 import sttp.capabilities.akka.AkkaStreams
-import sttp.model.{Method, StatusCode}
+import sttp.model.{ Method, StatusCode }
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.stringBody
 
