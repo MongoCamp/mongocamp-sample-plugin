@@ -1,10 +1,13 @@
-name := "mongocamp-sample-plugin"
+import scala.io.Source
+import scala.tools.nsc.io.File
 
 organization := "com.quadstingray"
 
 scalaVersion := "2.13.8"
 
-version := "0.1.0-SNAPSHOT"
+ThisBuild / version := PackageTools.packageJson().sbtStyleVersion
+
+name := PackageTools.packageJson().name
 
 libraryDependencies += "dev.mongocamp" %% "mongocamp-server" % "1.2.1"
 
