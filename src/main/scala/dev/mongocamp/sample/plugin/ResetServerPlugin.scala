@@ -1,10 +1,10 @@
-package com.quadstingray.mongocamp.sample.plugin
+package dev.mongocamp.sample.plugin
 
-import com.quadstingray.mongocamp.sample.plugin.job.ResetJob
+import dev.mongocamp.sample.plugin.job.ResetJob
 import dev.mongocamp.server.exception.MongoCampException
 import dev.mongocamp.server.model.JobConfig
 import dev.mongocamp.server.model.auth.UserInformation
-import dev.mongocamp.server.plugin.{ JobPlugin, ServerPlugin }
+import dev.mongocamp.server.plugin.{JobPlugin, ServerPlugin}
 
 class ResetServerPlugin extends ServerPlugin {
 

@@ -1,4 +1,4 @@
-package com.quadstingray.mongocamp.sample.plugin.job
+package dev.mongocamp.sample.plugin.job
 
 import com.typesafe.scalalogging.LazyLogging
 import dev.mongocamp.server.config.ConfigHolder
