@@ -1,6 +1,7 @@
 package dev.mongocamp.sample.plugin
 
 import dev.mongocamp.sample.plugin.job.ResetJob
+import dev.mongocamp.server.config.ConfigHelper
 import dev.mongocamp.server.exception.MongoCampException
 import dev.mongocamp.server.model.JobConfig
 import dev.mongocamp.server.model.auth.UserInformation
@@ -22,4 +23,13 @@ class ResetServerPlugin extends ServerPlugin {
     }
   }
 
+}
+
+object ResetServerPlugin {
+
+  val adminUser: String = ConfigHelper.globalConfigString("rest.admin.user")
+  val adminPwd: String = ConfigHelper.globalConfigString("rest.admin.password")
+
+  val userUser: String = ConfigHelper.globalConfigString("rest.user.user")
+  val userPwd: String = ConfigHelper.globalConfigString("rest.user.password")
 }
