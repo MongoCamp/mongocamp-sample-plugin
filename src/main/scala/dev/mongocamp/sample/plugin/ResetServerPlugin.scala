@@ -32,6 +32,9 @@ class ResetServerPlugin extends ServerPlugin {
       case e: MongoCampException =>
         ""
     }
+    val userChangesListener = EventSystem.eventBusActorSystem.actorOf(Props(classOf[UserChangesListener]), "userChangesListener")
+    EventSystem.eventStream.subscribe(userChangesListener, classOf[Event])
+
   }
 
   private def checkOrSetDefaultValue(configPath: String, defaultValue: String) = {
