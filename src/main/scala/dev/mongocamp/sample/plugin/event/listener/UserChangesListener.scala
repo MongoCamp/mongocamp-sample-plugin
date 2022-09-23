@@ -6,7 +6,6 @@ import dev.mongocamp.driver.mongodb.{GenericObservable, _}
 import dev.mongocamp.sample.plugin.ResetServerPlugin
 import dev.mongocamp.server.auth.{AuthHolder, MongoAuthHolder}
 import dev.mongocamp.server.database.UserDao
-import dev.mongocamp.server.event.Event
 import dev.mongocamp.server.event.user.{DeleteUserEvent, UpdateApiKeyEvent, UpdatePasswordEvent}
 
 class UserChangesListener extends Actor with LazyLogging {
@@ -23,15 +22,17 @@ class UserChangesListener extends Actor with LazyLogging {
         }
       }
     case updateApiKeyEvent: UpdateApiKeyEvent =>
-      if (updateApiKeyEvent.changedUserId.equalsIgnoreCase(ResetServerPlugin.adminUser)) {
-        val userDelete = UserDao().deleteOne(Map("userId" -> updateApiKeyEvent.changedUserId)).result()
-        val userInsert = UserDao().insertOne(ResetServerPlugin.defaultAdminUser).result()
-        userInsert
-      }
-      if (updateApiKeyEvent.changedUserId.equalsIgnoreCase(ResetServerPlugin.userUser)) {
-        val userDelete = UserDao().deleteOne(Map("userId" -> updateApiKeyEvent.changedUserId)).result()
-        val userInsert = UserDao().insertOne(ResetServerPlugin.defaultTestUser).result()
-        userInsert
+      if (AuthHolder.isMongoDbAuthHolder) {
+        if (updateApiKeyEvent.changedUserId.equalsIgnoreCase(ResetServerPlugin.adminUser)) {
+          val userDelete = UserDao().deleteOne(Map("userId" -> updateApiKeyEvent.changedUserId)).result()
+          val userInsert = UserDao().insertOne(ResetServerPlugin.defaultAdminUser).result()
+          userInsert
+        }
+        if (updateApiKeyEvent.changedUserId.equalsIgnoreCase(ResetServerPlugin.userUser)) {
+          val userDelete = UserDao().deleteOne(Map("userId" -> updateApiKeyEvent.changedUserId)).result()
+          val userInsert = UserDao().insertOne(ResetServerPlugin.defaultTestUser).result()
+          userInsert
+        }
       }
     case updatePasswordEvent: UpdatePasswordEvent =>
       if (AuthHolder.isMongoDbAuthHolder) {
@@ -43,9 +44,5 @@ class UserChangesListener extends Actor with LazyLogging {
           mongoAuthHolder.updatePasswordForUser(ResetServerPlugin.userUser, ResetServerPlugin.userPwd)
         }
       }
-    case event: Event =>
-      ""
-    case a: Any =>
-      logger.error(s"Unknown event ${a.toString}")
   }
 }

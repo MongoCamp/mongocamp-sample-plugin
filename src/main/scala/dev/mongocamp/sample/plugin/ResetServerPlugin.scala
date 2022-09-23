@@ -1,7 +1,7 @@
 package dev.mongocamp.sample.plugin
 
 import akka.actor.Props
-import dev.mongocamp.sample.plugin.event.listener.UserChangesListener
+import dev.mongocamp.sample.plugin.event.listener.{RoleChangesListener, UserChangesListener}
 import dev.mongocamp.sample.plugin.job.ResetJob
 import dev.mongocamp.server.auth.AuthHolder
 import dev.mongocamp.server.config.ConfigHelper
@@ -34,6 +34,9 @@ class ResetServerPlugin extends ServerPlugin {
     }
     val userChangesListener = EventSystem.eventBusActorSystem.actorOf(Props(classOf[UserChangesListener]), "userChangesListener")
     EventSystem.eventStream.subscribe(userChangesListener, classOf[Event])
+
+    val roleChangesListener = EventSystem.eventBusActorSystem.actorOf(Props(classOf[RoleChangesListener]), "roleChangesListener")
+    EventSystem.eventStream.subscribe(roleChangesListener, classOf[Event])
 
   }
 
