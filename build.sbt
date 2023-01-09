@@ -1,15 +1,14 @@
-import scala.io.Source
-import scala.tools.nsc.io.File
+import dev.quadstingray.sbt.json.JsonFile
 
-organization := "com.quadstingray"
+val json = JsonFile(file("package.json"))
 
-scalaVersion := "2.13.8"
+name := json.stringValue("name")
 
-ThisBuild / version := PackageTools.packageJson().sbtStyleVersion
+organization := json.stringValue("organization")
 
-name := PackageTools.packageJson().name
+scalaVersion := "2.13.10"
 
-libraryDependencies += "dev.mongocamp" %% "mongocamp-server" % "1.2.1"
+libraryDependencies += "dev.mongocamp" %% "mongocamp-server" % "1.3.1"
 
 publishTo := Some("GitHub Package Registry".at("https://maven.pkg.github.com/mongocamp/mongocamp-sample-plugin/"))
 
