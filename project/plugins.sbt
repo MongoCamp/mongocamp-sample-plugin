@@ -10,5 +10,5 @@ addDependencyTreePlugin
 
 addSbtPlugin("com.jsuereth" % "sbt-pgp" % "2.1.1")
 
-addSbtPlugin("dev.quadstingray" %% "sbt-json" % "0.6.4")
+addSbtPlugin("dev.quadstingray" %% "sbt-json" % "0.6.5")
 

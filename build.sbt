@@ -8,7 +8,7 @@ organization := json.stringValue("organization")
 
 scalaVersion := "2.13.10"
 
-libraryDependencies += "dev.mongocamp" %% "mongocamp-server" % "1.3.1"
+libraryDependencies += "dev.mongocamp" %% "mongocamp-server" % "1.4.0"
 
 publishTo := Some("GitHub Package Registry".at("https://maven.pkg.github.com/mongocamp/mongocamp-sample-plugin/"))
 
